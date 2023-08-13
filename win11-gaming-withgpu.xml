@@ -1,32 +1,24 @@
 <domain type="kvm">
   <name>win11-gaming</name>
-  <uuid>0aac6040-1a9c-404c-9e95-c1e442cadedf</uuid>
+  <uuid>1c15870b-7395-4502-b992-181923b5df24</uuid>
   <metadata>
     <libosinfo:libosinfo xmlns:libosinfo="http://libosinfo.org/xmlns/libvirt/domain/1.0">
       <libosinfo:os id="http://microsoft.com/win/11"/>
     </libosinfo:libosinfo>
   </metadata>
-  <memory unit="KiB">16777216</memory>
-  <currentMemory unit="KiB">16777216</currentMemory>
-  <memoryBacking>
-    <source type="memfd"/>
-    <access mode="shared"/>
-  </memoryBacking>
+  <memory unit="KiB">33554432</memory>
+  <currentMemory unit="KiB">33554432</currentMemory>
   <vcpu placement="static">8</vcpu>
-  <sysinfo type="smbios">
-    <oemStrings>
-      <entry>4e32566d-8e9e-4f52-81d3-5bb9715f9727:MIIDazCCAlOgAwIBAgIUCAGI8+KqInAxjUtNXdjrhYbhnI8wDQYJKoZIhvcNAQELBQAwRTELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUxITAfBgNVBAoMGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDAeFw0yMzA0MjYxMTAwNTZaFw0yMzA1MjYxMTAwNTZaMEUxCzAJBgNVBAYTAkFVMRMwEQYDVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRlcm5ldCBXaWRnaXRzIFB0eSBMdGQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCKIRfO5w5aQpQ6AOFj5TozqiuwdJw4vdFurfLqbIIbDiQYqQjUaOHQBKlT0RJA1mWCQp/c4JJilP049HqDQnMeyJk0B81tXTQkkqWSuuPAh2fA8sEZAegnKK9NB9eBuYgAFarst/Sri52D8dMd2SN2Xy7eB3Xo9uS5zEyuKKpk9rC5ZIGfns5sCEE0HFiT+rfymwAJ/S7IeVNGSSrcOCiioinyXrSigv0zrSgAuH0mVa78yBYww44XvHCLlD8rtCGEmiPpxcVBdhNHUmLlE/WaXtZeVwwkjg8z5xjsrZgHvRhccUWPX1Ls4BxTGPqufPRMb0U904urgylsfem6q3UrAgMBAAGjUzBRMB0GA1UdDgQWBBQMdL2KRnx6lr2abSMjhgVCM1fDCTAfBgNVHSMEGDAWgBQMdL2KRnx6lr2abSMjhgVCM1fDCTAPBgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQA3O2EFA2wiSb53QcEQTQ4BXhQ10Lp401AZy0z6OqX8msltqOmfNNq9r/iGQpGUVzzQj3e4kcW745GWdT6A0ZH9RmFUOXpE9DFieuc35zkHQfryFWiBFMN/CGFR2BZ13kmNisUGX3Jr5IIb8SFaKTk96y2HqrVv6ketKuVvPYZaYm3KZgvwbUUO46NY/CNOhjxtH4T/JHf7chXSpr7vDRhsanxAbpH7qiKuuwIFrA3xQX2Vuvrwltxq9wd3Wbriwrtw8t4TtmnTmWwVjEpDq8Iga+KiWuAH2U9oQPsG5tnJkY5vrV4H2IgOZT/YPckHlWz/7zTe4VR+o42aY4e+jk+R</entry>
-    </oemStrings>
-  </sysinfo>
   <os firmware="efi">
-    <type arch="x86_64" machine="pc-q35-7.2">hvm</type>
+    <type arch="x86_64" machine="pc-q35-8.0">hvm</type>
     <firmware>
       <feature enabled="no" name="enrolled-keys"/>
       <feature enabled="yes" name="secure-boot"/>
     </firmware>
     <loader readonly="yes" secure="yes" type="pflash">/usr/share/edk2/x64/OVMF_CODE.secboot.4m.fd</loader>
     <nvram template="/usr/share/edk2/x64/OVMF_VARS.4m.fd">/var/lib/libvirt/qemu/nvram/win11-gaming_VARS.fd</nvram>
-    <smbios mode="sysinfo"/>
+    <boot dev="hd"/>
+    <bootmenu enable="yes"/>
   </os>
   <features>
     <acpi/>
@@ -35,7 +27,6 @@
       <relaxed state="on"/>
       <vapic state="on"/>
       <spinlocks state="on" retries="8191"/>
-      <vendor_id state="on" value="kvm hyperv"/>
     </hyperv>
     <kvm>
       <hidden state="on"/>
@@ -43,8 +34,9 @@
     <vmport state="off"/>
     <smm state="on"/>
   </features>
-  <cpu mode="host-passthrough" check="none" migratable="on">
+  <cpu mode="host-model" check="partial">
     <topology sockets="1" dies="1" cores="4" threads="2"/>
+    <feature policy="disable" name="hypervisor"/>
   </cpu>
   <clock offset="localtime">
     <timer name="rtc" tickpolicy="catchup"/>
@@ -62,11 +54,10 @@
   <devices>
     <emulator>/usr/bin/qemu-system-x86_64</emulator>
     <disk type="file" device="disk">
-      <driver name="qemu" type="raw"/>
-      <source file="/var/lib/libvirt/images/win11-gaming.img"/>
-      <target dev="vda" bus="virtio"/>
-      <boot order="2"/>
-      <address type="pci" domain="0x0000" bus="0x05" slot="0x00" function="0x0"/>
+      <driver name="qemu" type="qcow2"/>
+      <source file="/var/lib/libvirt/images/win11.qcow2"/>
+      <target dev="sda" bus="sata"/>
+      <address type="drive" controller="0" bus="0" target="0" unit="0"/>
     </disk>
     <disk type="block" device="disk">
       <driver name="qemu" type="raw"/>
@@ -155,15 +146,15 @@
       <address type="pci" domain="0x0000" bus="0x03" slot="0x00" function="0x0"/>
     </controller>
     <interface type="network">
-      <mac address="52:54:00:ed:c5:c2"/>
-      <source network="nat-network"/>
+      <mac address="52:54:00:a4:97:d5"/>
+      <source network="NAT Network"/>
       <model type="virtio"/>
       <address type="pci" domain="0x0000" bus="0x01" slot="0x00" function="0x0"/>
     </interface>
     <input type="mouse" bus="ps2"/>
     <input type="keyboard" bus="ps2"/>
-    <tpm model="tpm-crb">
-      <backend type="emulator" version="2.0"/>
+    <tpm model="tpm-tis">
+      <backend type="emulator" version="1.2"/>
     </tpm>
     <audio id="1" type="none"/>
     <hostdev mode="subsystem" type="pci" managed="yes">
