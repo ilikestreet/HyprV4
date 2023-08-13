@@ -28,7 +28,9 @@
         "pulseaudio",
         "pulseaudio#microphone",
         "tray",
-        "custom/weather"
+        "custom/weather",
+        "custom/myhyprv",
+        "custom/light_dark"
     ],
 
     "include": [

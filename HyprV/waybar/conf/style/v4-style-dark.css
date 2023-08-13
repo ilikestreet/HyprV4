@@ -9,7 +9,7 @@
 
 window#waybar {
     background: rgba(21, 18, 27, 0);
-    color: #cdd6f4;
+    color: #f6f7fc;
 }
 
 tooltip {
@@ -27,22 +27,12 @@ tooltip label{
 
 #workspaces button {
     padding: 5px;
-    color: #313244;
+    color: #f6f7fc;
     margin-right: 5px;
 }
 
 #workspaces button.active {
-    color: #a6adc8;
-}
-
-#workspaces button.focused {
-    color: #a6adc8;
-    background: #eba0ac;
-    border-radius: 10px;
-}
-
-#workspaces button.urgent {
-    color: #11111b;
+    color: #000000;
     background: #a6e3a1;
     border-radius: 10px;
 }
@@ -54,6 +44,10 @@ tooltip label{
 }
 
 #custom-launch_wofi,
+#custom-launch_firefox,
+#custom-launch_thunderbird,
+#custom-launch_thunar,
+#custom-launch_kitty,
 #custom-lock_screen,
 #custom-light_dark,
 #custom-power_btn,
@@ -72,65 +66,43 @@ tooltip label{
 #tray,
 #temperature,
 #workspaces,
+#idle_inhibitor,
 #backlight {
-  background: #1e1e2e;
-  opacity: 0.8;
-  padding: 0px 10px;
-  margin: 3px 0px;
-  margin-top: 10px;
-  border: 0px;
-}
-
-#tray, #custom-lock_screen, #temperature, #backlight, #custom-launch_wofi, #cpu {
-    border-radius: 10px 0px 0px 10px;
-}
-
-#custom-light_dark, #custom-power_btn, #workspaces, #pulseaudio.microphone, #battery, #disk {
-    border-radius: 0px 10px 10px 0px;
-    margin-right: 10px;
+    background: rgba(21, 18, 27, 0);
+    opacity: 1;
+    padding: 0px 8px;
+    margin: 0px 3px;
+    border: 0px;
 }
 
 #temperature.critical {
     color: #e92d4d;
 }
 
-
 #workspaces {
     padding-right: 0px;
     padding-left: 5px;
 }
 
-#custom-power_profile {
-    color: #a6e3a1;
-    border-left: 0px;
-    border-right: 0px;
-}
-
 #window {
     border-radius: 10px;
-    margin-left: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#custom-launch_firefox, 
+#custom-launch_thunderbird,
+#custom-launch_thunar,
+#custom-launch_wofi,
+#custom-launch_kitty,
+#custom-weather {
+    margin-left: 0px;
+    border-right: 0px;
+    font-size: 24px;
     margin-right: 20px;
 }
 
-#custom-launch_wofi {
-    color: #89b4fa;
-    margin-left: 10px;
-    border-right: 0px;
-}
-
-#pulseaudio {
-    color: #89b4fa;
-    border-left: 0px;
-    border-right: 0px;
-}
-
-#pulseaudio.microphone {
-    color: #cba6f7;
-    border-left: 0px;
-    border-right: 0px;
-}
-
-#battery {
-    color: #a6e3a1;
-    border-left: 0px;
+#custom-launch_firefox, 
+#custom-launch_kitty {
+    font-size: 20px;
 }

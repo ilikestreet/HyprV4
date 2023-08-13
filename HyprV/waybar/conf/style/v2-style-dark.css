@@ -73,12 +73,12 @@ tooltip label{
 #temperature,
 #workspaces,
 #backlight {
-  background: #1e1e2e;
-  opacity: 0.8;
-  padding: 0px 10px;
-  margin: 3px 0px;
-  margin-top: 10px;
-  border: 0px;
+    background: #1e1e2e;
+    opacity: 0.8;
+    padding: 0px 10px;
+    margin: 3px 0px;
+    margin-top: 10px;
+    border: 0px;
 }
 
 #tray, #custom-lock_screen, #temperature, #backlight, #custom-launch_wofi, #cpu {

@@ -87,7 +87,7 @@ def format_chances(hour):
             conditions.append(chances[event]+" "+hour[event]+"%")
     return ", ".join(conditions)
 
-tempint = int(weather['current_condition'][0]['FeelsLikeC'])
+tempint = int(weather['current_condition'][0]['temp_C'])
 extrachar = ''
 if tempint > 0 and tempint < 10:
     extrachar = '+'
