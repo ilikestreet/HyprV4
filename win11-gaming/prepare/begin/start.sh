@@ -10,7 +10,7 @@ systemctl stop display-manager.service
 
 # Unbind VTconsoles
 echo 0 > /sys/class/vtconsole/vtcon0/bind
-echo 0 > /sys/class/vtconsole/vtcon1/bind
+# echo 0 > /sys/class/vtconsole/vtcon1/bind
 
 # Unbind EFI-Framebuffer
 #echo efi-framebuffer.0 > /sys/bus/platform/drivers/efi-framebuffer/unbind
@@ -25,10 +25,8 @@ modprobe -r nvidia_uvm
 modprobe -r nvidia
 
 
-virsh nodedev-detach pci_0000_0c_00_0
-virsh nodedev-detach pci_0000_0c_00_1
-
-
+# virsh nodedev-detach pci_0000_0c_00_0
+# virsh nodedev-detach pci_0000_0c_00_1
 
 ## Load vfio
 #modprobe vfio

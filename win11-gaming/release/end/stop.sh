@@ -3,8 +3,8 @@ set -x
 
 
 #sleep 10
-virsh nodedev-reattach pci_0000_0c_00_0
-virsh nodedev-reattach pci_0000_0c_00_1
+# virsh nodedev-reattach pci_0000_0c_00_0
+# virsh nodedev-reattach pci_0000_0c_00_1
 
 
 ## Unload vfio
